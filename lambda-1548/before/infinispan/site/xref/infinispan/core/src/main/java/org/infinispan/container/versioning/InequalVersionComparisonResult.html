@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>InequalVersionComparisonResult xref</title>
+<link type="text/css" rel="stylesheet" href="../../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../../../../../../../apidocs/org/infinispan/container/versioning/InequalVersionComparisonResult.html">View Javadoc</a></div><pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> org.infinispan.container.versioning;
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> * Versions can be compared to each other to result in one version being before, after or at the same time as another</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> * version.  This is different from the JDK's {@link Comparable} interface, which is much more simplistic in that it</em>
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <em class="jxr_javadoccomment"> * doesn't differentiate between something that is the same versus equal-but-different.</em>
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * @author Manik Surtani</em>
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <em class="jxr_javadoccomment"> * @since 5.1</em>
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">public</strong> enum <a href="../../../../org/infinispan/container/versioning/InequalVersionComparisonResult.html">InequalVersionComparisonResult</a> {
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <em class="jxr_javadoccomment">    * Denotes a version that was created temporally &lt;i&gt;before&lt;/i&gt; another version.</em>
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <em class="jxr_javadoccomment">    */</em>
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>     BEFORE,
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <em class="jxr_javadoccomment">    * Denotes a version that was created temporally &lt;i&gt;after&lt;/i&gt; another version.</em>
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_javadoccomment">    */</em>
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>     AFTER,
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <em class="jxr_javadoccomment">    * Denotes that the two versions being compared are equal.</em>
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <em class="jxr_javadoccomment">    */</em>
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>     EQUAL,
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <em class="jxr_javadoccomment">    * Denotes a version that was created at the same time as another version, but is not equal.  This is only really</em>
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment">    * useful when using a partition-aware versioning scheme, such as vector or Lamport clocks.</em>
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment">    */</em>
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>     CONFLICTING
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  }
+</pre>
+<hr/>
+<div id="footer">Copyright &#169; 2015. All rights reserved.</div>
+</body>
+</html>

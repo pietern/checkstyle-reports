@@ -1,0 +1,304 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>CacheStream xref</title>
+<link type="text/css" rel="stylesheet" href="../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../../../../../apidocs/org/infinispan/CacheStream.html">View Javadoc</a></div><pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> org.infinispan;
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> java.util.Comparator;
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> java.util.Iterator;
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> java.util.Set;
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> java.util.Spliterator;
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> java.util.concurrent.TimeUnit;
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> java.util.function.Consumer;
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> java.util.function.Function;
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> java.util.function.Predicate;
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> java.util.stream.Collector;
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <strong class="jxr_keyword">import</strong> java.util.stream.Stream;
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_javadoccomment"> * A {@link Stream} that has additional operations to monitor or control behavior when used from a {@link Cache}.  Note that</em>
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <em class="jxr_javadoccomment"> * you may only use these additional methods on the CacheStream before any intermediate operations are performed as</em>
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <em class="jxr_javadoccomment"> * a {@link Stream} is returned from those methods.</em>
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <em class="jxr_javadoccomment"> * &lt;p&gt;Whenever the iterator or spliterator methods are used the user &lt;b&gt;must&lt;/b&gt; close the {@link Stream}</em>
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <em class="jxr_javadoccomment"> * that the method was invoked on after completion of its operation.  Failure to do so may cause a thread leakage if</em>
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <em class="jxr_javadoccomment"> * the iterator or spliterator are not fully consumed.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <em class="jxr_javadoccomment"> * &lt;p&gt;When using stream that is backed by a distributed cache these operations will be performed using remote</em>
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <em class="jxr_javadoccomment"> * distribution controlled by the segments that each key maps to.  All intermediate operations are lazy, even the</em>
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <em class="jxr_javadoccomment"> * special cases described in later paragraphs and are not evaluated until a final terminal operation is invoked on</em>
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment"> * the stream.  Essentially each set of intermediate operations is shipped to each remote node where they are applied</em>
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment"> * to a local stream there and finally the terminal operation is completed.  If this stream is parallel the processing</em>
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment"> * on remote nodes is also done using a parallel stream.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <em class="jxr_javadoccomment"> * &lt;p&gt;Parallel distribution is enabled by default for all operations except for {@link CacheStream#iterator()} &amp;</em>
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <em class="jxr_javadoccomment"> * {@link CacheStream#spliterator()}.  Please see {@link CacheStream#sequentialDistribution()} and</em>
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <em class="jxr_javadoccomment"> * {@link CacheStream#parallelDistribution()}.  With this disabled only a single node will process the operation</em>
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <em class="jxr_javadoccomment"> * at a time (includes locally).&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <em class="jxr_javadoccomment"> * &lt;p&gt;Rehash aware is enabled by default for all operations.  Any intermediate or terminal operation may be invoked</em>
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <em class="jxr_javadoccomment"> * multiple times during a rehash and thus you should ensure the are idempotent.  This can be problematic for</em>
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <em class="jxr_javadoccomment"> * {@link CacheStream#forEach(Consumer)} as it may be difficult to implement with such requirements, please see it for</em>
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <em class="jxr_javadoccomment"> * more information.  If you wish to disable rehash aware operations you can disable them by calling</em>
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <em class="jxr_javadoccomment"> * {@link CacheStream#disableRehashAware()} which should provide better performance for some operations.  The</em>
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  <em class="jxr_javadoccomment"> * performance is most affected for the key aware operations {@link CacheStream#iterator()},</em>
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  <em class="jxr_javadoccomment"> * {@link CacheStream#spliterator()}, {@link CacheStream#forEach(Consumer)}.  Disabling rehash can cause</em>
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  <em class="jxr_javadoccomment"> * incorrect results if the terminal operation is invoked and a rehash occurs before the operation completes.  If</em>
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>  <em class="jxr_javadoccomment"> * incorrect results do occur it is guaranteed that it will only be that entries were missed and no entries are</em>
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>  <em class="jxr_javadoccomment"> * duplicated.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>  <em class="jxr_javadoccomment"> * &lt;p&gt;Any stateful intermediate operation requires pulling all information up to that point local to operate properly.</em>
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>  <em class="jxr_javadoccomment"> * Each of these methods may have slightly different behavior, so make sure you check the method you are utilizing.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>  <em class="jxr_javadoccomment"> * &lt;p&gt;An example of such an operation is using distinct intermediate operation. What will happen</em>
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  <em class="jxr_javadoccomment"> * is upon calling the terminal operation a remote retrieval operation will be ran using all of</em>
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>  <em class="jxr_javadoccomment"> * the intermediate operations up to the distinct operation remotely.  This retrieval is then used to fuel a local</em>
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>  <em class="jxr_javadoccomment"> * stream where all of the remaining intermediate operations are performed and then finally the terminal operation is</em>
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  <em class="jxr_javadoccomment"> * applied as normal.  Note in this case the intermediate iterator still obeys the</em>
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  <em class="jxr_javadoccomment"> * {@link CacheStream#distributedBatchSize(int)} setting irrespective of the terminal operator.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>  <em class="jxr_javadoccomment"> * @param &lt;R&gt; The type of the stream</em>
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>  <em class="jxr_javadoccomment"> * @since 8.0</em>
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">interface</strong> CacheStream&lt;R&gt; <strong class="jxr_keyword">extends</strong> Stream&lt;R&gt; {
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>  <em class="jxr_javadoccomment">    * This would disable sending requests to all other remote nodes compared to one at a time. This can reduce memory</em>
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>  <em class="jxr_javadoccomment">    * pressure on the originator node at the cost of performance.</em>
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>  <em class="jxr_javadoccomment">    * &lt;p&gt;Parallel distribution is enabled by default except for {@link CacheStream#iterator()} &amp;</em>
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  <em class="jxr_javadoccomment">    * {@link CacheStream#spliterator()}&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_javadoccomment">    * @return a stream with parallel distribution disabled</em>
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  <em class="jxr_javadoccomment">    */</em>
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>     CacheStream&lt;R&gt; sequentialDistribution();
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>  
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>  <em class="jxr_javadoccomment">    * This would enable sending requests to all other remote nodes when a terminal operator is performed.  This</em>
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>  <em class="jxr_javadoccomment">    * requires additional overhead as it must process results concurrently from various nodes, but should perform</em>
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>  <em class="jxr_javadoccomment">    * faster in the majority of cases.</em>
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  <em class="jxr_javadoccomment">    * &lt;p&gt;Parallel distribution is enabled by default except for {@link CacheStream#iterator()} &amp;</em>
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>  <em class="jxr_javadoccomment">    * {@link CacheStream#spliterator()}&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>  <em class="jxr_javadoccomment">    * @return a stream with parallel distribution enabled.</em>
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>  <em class="jxr_javadoccomment">    */</em>
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>     CacheStream&lt;R&gt; parallelDistribution();
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>  
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>  <em class="jxr_javadoccomment">    * Filters which entries are returned by what segment they are present in.  This method can be substantially more</em>
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>  <em class="jxr_javadoccomment">    * efficient than using a regular {@link CacheStream#filter(Predicate)} method as this can control what nodes are</em>
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>  <em class="jxr_javadoccomment">    * asked for data and what entries are read from the underlying CacheStore if present.</em>
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>  <em class="jxr_javadoccomment">    * @param segments The segments to use for this stream operation.  Any segments not in this set will be ignored.</em>
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>  <em class="jxr_javadoccomment">    * @return a stream with the segments filtered.</em>
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>  <em class="jxr_javadoccomment">    */</em>
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>     CacheStream&lt;R&gt; filterKeySegments(Set&lt;Integer&gt; segments);
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>  
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>  <em class="jxr_javadoccomment">    * Filters which entries are returned by only returning ones that map to the given key.  This method will &lt;b&gt;always&lt;/b&gt;</em>
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>  <em class="jxr_javadoccomment">    * be faster than a regular {@link CacheStream#filter(Predicate)} if any keys must be retrieved remotely or if a</em>
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>  <em class="jxr_javadoccomment">    * cache store is in use.</em>
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>  <em class="jxr_javadoccomment">    * @param keys The keys that this stream will only operate on.</em>
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>  <em class="jxr_javadoccomment">    * @return a stream with the keys filtered.</em>
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>  <em class="jxr_javadoccomment">    */</em>
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>     CacheStream&lt;R&gt; filterKeys(Set&lt;?&gt; keys);
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>  
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>  <em class="jxr_javadoccomment">    * Controls how many keys are returned from a remote node when using a stream terminal operation with a distributed</em>
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>  <em class="jxr_javadoccomment">    * cache to back this stream.  This value is ignored when terminal operators that don't track keys are used.  Key</em>
+<a class="jxr_linenumber" name="L100" href="#L100">100</a> <em class="jxr_javadoccomment">    * tracking terminal operators are {@link CacheStream#iterator()}, {@link CacheStream#spliterator()},</em>
+<a class="jxr_linenumber" name="L101" href="#L101">101</a> <em class="jxr_javadoccomment">    * {@link CacheStream#forEach(Consumer)}.  Please see those methods for additional information on how this value</em>
+<a class="jxr_linenumber" name="L102" href="#L102">102</a> <em class="jxr_javadoccomment">    * may affect them.</em>
+<a class="jxr_linenumber" name="L103" href="#L103">103</a> <em class="jxr_javadoccomment">    * &lt;p&gt;This value may be used in the case of a a terminal operator that doesn't track keys if an intermediate</em>
+<a class="jxr_linenumber" name="L104" href="#L104">104</a> <em class="jxr_javadoccomment">    * operation is performed that requires bringing keys locally to do computations.  Examples of such intermediate</em>
+<a class="jxr_linenumber" name="L105" href="#L105">105</a> <em class="jxr_javadoccomment">    * operations are {@link CacheStream#sorted()}, {@link CacheStream#sorted(Comparator)},</em>
+<a class="jxr_linenumber" name="L106" href="#L106">106</a> <em class="jxr_javadoccomment">    * {@link CacheStream#distinct()}, {@link CacheStream#limit(long)}, {@link CacheStream#skip(long)}&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L107" href="#L107">107</a> <em class="jxr_javadoccomment">    * &lt;p&gt;This value is &lt;b&gt;always&lt;/b&gt; ignored when this stream is backed by a cache that is not distributed as all</em>
+<a class="jxr_linenumber" name="L108" href="#L108">108</a> <em class="jxr_javadoccomment">    * values are already local.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L109" href="#L109">109</a> <em class="jxr_javadoccomment">    * @param batchSize The size of each batch.  This defaults to the state transfer chunk size.</em>
+<a class="jxr_linenumber" name="L110" href="#L110">110</a> <em class="jxr_javadoccomment">    * @return a stream with the batch size updated</em>
+<a class="jxr_linenumber" name="L111" href="#L111">111</a> <em class="jxr_javadoccomment">    */</em>
+<a class="jxr_linenumber" name="L112" href="#L112">112</a>    CacheStream&lt;R&gt; distributedBatchSize(<strong class="jxr_keyword">int</strong> batchSize);
+<a class="jxr_linenumber" name="L113" href="#L113">113</a> 
+<a class="jxr_linenumber" name="L114" href="#L114">114</a>    <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L115" href="#L115">115</a> <em class="jxr_javadoccomment">    * Allows registration of a segment completion listener that is notified when a segment has completed</em>
+<a class="jxr_linenumber" name="L116" href="#L116">116</a> <em class="jxr_javadoccomment">    * processing.  If the terminal operator has a short circuit this listener may never be called.</em>
+<a class="jxr_linenumber" name="L117" href="#L117">117</a> <em class="jxr_javadoccomment">    * &lt;p&gt;This method is designed for the sole purpose of use with the {@link CacheStream#iterator()} to allow for</em>
+<a class="jxr_linenumber" name="L118" href="#L118">118</a> <em class="jxr_javadoccomment">    * a user to track completion of segments as they are returned from the iterator.  Behavior of other methods</em>
+<a class="jxr_linenumber" name="L119" href="#L119">119</a> <em class="jxr_javadoccomment">    * is not specified.  Please see {@link CacheStream#iterator()} for more information.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L120" href="#L120">120</a> <em class="jxr_javadoccomment">    * &lt;p&gt;Multiple listeners may be registered upon multiple invocations of this method.  The ordering of notified</em>
+<a class="jxr_linenumber" name="L121" href="#L121">121</a> <em class="jxr_javadoccomment">    * listeners is not specified.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L122" href="#L122">122</a> <em class="jxr_javadoccomment">    * @param listener The listener that will be called back as segments are completed.</em>
+<a class="jxr_linenumber" name="L123" href="#L123">123</a> <em class="jxr_javadoccomment">    * @return a stream with the listener registered.</em>
+<a class="jxr_linenumber" name="L124" href="#L124">124</a> <em class="jxr_javadoccomment">    */</em>
+<a class="jxr_linenumber" name="L125" href="#L125">125</a>    CacheStream&lt;R&gt; segmentCompletionListener(<a href="../../org/infinispan/CacheStream.html">SegmentCompletionListener</a> listener);
+<a class="jxr_linenumber" name="L126" href="#L126">126</a> 
+<a class="jxr_linenumber" name="L127" href="#L127">127</a>    <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L128" href="#L128">128</a> <em class="jxr_javadoccomment">    * Disables tracking of rehash events that could occur to the underlying cache.  If a rehash event occurs while</em>
+<a class="jxr_linenumber" name="L129" href="#L129">129</a> <em class="jxr_javadoccomment">    * a terminal operation is being performed it is possible for some values that are in the cache to not be found.</em>
+<a class="jxr_linenumber" name="L130" href="#L130">130</a> <em class="jxr_javadoccomment">    * Note that you will never have an entry duplicated when rehash awareness is disabled, only lost values.</em>
+<a class="jxr_linenumber" name="L131" href="#L131">131</a> <em class="jxr_javadoccomment">    * &lt;p&gt;Most terminal operations will run faster with rehash awareness disabled even without a rehash occuring.</em>
+<a class="jxr_linenumber" name="L132" href="#L132">132</a> <em class="jxr_javadoccomment">    * However if a rehash occurs with this disabled be prepared to possibly receive only a subset of values.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L133" href="#L133">133</a> <em class="jxr_javadoccomment">    * @return a stream with rehash awareness disabled.</em>
+<a class="jxr_linenumber" name="L134" href="#L134">134</a> <em class="jxr_javadoccomment">    */</em>
+<a class="jxr_linenumber" name="L135" href="#L135">135</a>    CacheStream&lt;R&gt; disableRehashAware();
+<a class="jxr_linenumber" name="L136" href="#L136">136</a> 
+<a class="jxr_linenumber" name="L137" href="#L137">137</a>    <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L138" href="#L138">138</a> <em class="jxr_javadoccomment">    * Sets a given time to wait for a remote operation to respond by.  This timeout does nothing if the terminal</em>
+<a class="jxr_linenumber" name="L139" href="#L139">139</a> <em class="jxr_javadoccomment">    * operation does not go remote.</em>
+<a class="jxr_linenumber" name="L140" href="#L140">140</a> <em class="jxr_javadoccomment">    * &lt;p&gt;If a timeout does occur then a {@link java.util.concurrent.TimeoutException} is thrown from the terminal</em>
+<a class="jxr_linenumber" name="L141" href="#L141">141</a> <em class="jxr_javadoccomment">    * operation invoking thread or on the next call to the {@link Iterator} or {@link Spliterator}.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L142" href="#L142">142</a> <em class="jxr_javadoccomment">    * &lt;p&gt;Note that if a rehash occurs this timeout value is reset for the subsequent retry if rehash aware is</em>
+<a class="jxr_linenumber" name="L143" href="#L143">143</a> <em class="jxr_javadoccomment">    * enabled.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L144" href="#L144">144</a> <em class="jxr_javadoccomment">    * @param timeout the maximum time to wait</em>
+<a class="jxr_linenumber" name="L145" href="#L145">145</a> <em class="jxr_javadoccomment">    * @param unit the time unit of the timeout argument</em>
+<a class="jxr_linenumber" name="L146" href="#L146">146</a> <em class="jxr_javadoccomment">    * @return a stream with the timeout set</em>
+<a class="jxr_linenumber" name="L147" href="#L147">147</a> <em class="jxr_javadoccomment">    */</em>
+<a class="jxr_linenumber" name="L148" href="#L148">148</a>    CacheStream&lt;R&gt; timeout(<strong class="jxr_keyword">long</strong> timeout, TimeUnit unit);
+<a class="jxr_linenumber" name="L149" href="#L149">149</a> 
+<a class="jxr_linenumber" name="L150" href="#L150">150</a>    <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L151" href="#L151">151</a> <em class="jxr_javadoccomment">    * Functional interface that is used as a callback when segments are completed.  Please see</em>
+<a class="jxr_linenumber" name="L152" href="#L152">152</a> <em class="jxr_javadoccomment">    * {@link CacheStream#segmentCompletionListener(SegmentCompletionListener)} for more details.</em>
+<a class="jxr_linenumber" name="L153" href="#L153">153</a> <em class="jxr_javadoccomment">    * @since 8.0</em>
+<a class="jxr_linenumber" name="L154" href="#L154">154</a> <em class="jxr_javadoccomment">    */</em>
+<a class="jxr_linenumber" name="L155" href="#L155">155</a>    @FunctionalInterface
+<a class="jxr_linenumber" name="L156" href="#L156">156</a>    <strong class="jxr_keyword">interface</strong> <a href="../../org/infinispan/CacheStream.html">SegmentCompletionListener</a> {
+<a class="jxr_linenumber" name="L157" href="#L157">157</a>       <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L158" href="#L158">158</a> <em class="jxr_javadoccomment">       * Method invoked when the segment has been found to be consumed properly by the terminal operation.</em>
+<a class="jxr_linenumber" name="L159" href="#L159">159</a> <em class="jxr_javadoccomment">       * @param segments The segments that were completed</em>
+<a class="jxr_linenumber" name="L160" href="#L160">160</a> <em class="jxr_javadoccomment">       */</em>
+<a class="jxr_linenumber" name="L161" href="#L161">161</a>       <strong class="jxr_keyword">void</strong> segmentCompleted(Set&lt;Integer&gt; segments);
+<a class="jxr_linenumber" name="L162" href="#L162">162</a>    }
+<a class="jxr_linenumber" name="L163" href="#L163">163</a> 
+<a class="jxr_linenumber" name="L164" href="#L164">164</a>    <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L165" href="#L165">165</a> <em class="jxr_javadoccomment">    * {@inheritDoc}</em>
+<a class="jxr_linenumber" name="L166" href="#L166">166</a> <em class="jxr_javadoccomment">    * &lt;p&gt;This operation is performed remotely on the node that is the primary owner for the key tied to the entry(s)</em>
+<a class="jxr_linenumber" name="L167" href="#L167">167</a> <em class="jxr_javadoccomment">    * in this stream.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L168" href="#L168">168</a> <em class="jxr_javadoccomment">    * &lt;p&gt;NOTE: This method while being rehash aware has the lowest consistency of all of the operators.  This</em>
+<a class="jxr_linenumber" name="L169" href="#L169">169</a> <em class="jxr_javadoccomment">    * operation will be performed on every entry at least once in the cluster, as long as the originator doesn't go</em>
+<a class="jxr_linenumber" name="L170" href="#L170">170</a> <em class="jxr_javadoccomment">    * down while it is being performed.  This is due to how the distributed action is performed.  Essentially the</em>
+<a class="jxr_linenumber" name="L171" href="#L171">171</a> <em class="jxr_javadoccomment">    * {@link CacheStream#distributedBatchSize} value controls how many elements are processed per node at a time</em>
+<a class="jxr_linenumber" name="L172" href="#L172">172</a> <em class="jxr_javadoccomment">    * when rehash is enabled. After those are complete the keys are sent to the originator to confirm that those were</em>
+<a class="jxr_linenumber" name="L173" href="#L173">173</a> <em class="jxr_javadoccomment">    * processed.  If that node goes down during/before the response those keys will be processed a second time.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L174" href="#L174">174</a> <em class="jxr_javadoccomment">    * &lt;p&gt;This method is ran distributed by default with a distributed backing cache.  However if you wish for this</em>
+<a class="jxr_linenumber" name="L175" href="#L175">175</a> <em class="jxr_javadoccomment">    * operation to run locally you can use the {@code stream().iterator().forEachRemaining(action)} for a single</em>
+<a class="jxr_linenumber" name="L176" href="#L176">176</a> <em class="jxr_javadoccomment">    * threaded variant.  If you</em>
+<a class="jxr_linenumber" name="L177" href="#L177">177</a> <em class="jxr_javadoccomment">    * wish to have a parallel variant you can use {@link java.util.stream.StreamSupport#stream(Spliterator, boolean)}</em>
+<a class="jxr_linenumber" name="L178" href="#L178">178</a> <em class="jxr_javadoccomment">    * passing in the spliterator from the stream.  In either case remember you &lt;b&gt;must&lt;/b&gt; close the stream after</em>
+<a class="jxr_linenumber" name="L179" href="#L179">179</a> <em class="jxr_javadoccomment">    * you are done processing the iterator or spliterator..&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L180" href="#L180">180</a> <em class="jxr_javadoccomment">    * @param action</em>
+<a class="jxr_linenumber" name="L181" href="#L181">181</a> <em class="jxr_javadoccomment">    */</em>
+<a class="jxr_linenumber" name="L182" href="#L182">182</a>    @Override
+<a class="jxr_linenumber" name="L183" href="#L183">183</a>    <strong class="jxr_keyword">void</strong> forEach(Consumer&lt;? <strong class="jxr_keyword">super</strong> R&gt; action);
+<a class="jxr_linenumber" name="L184" href="#L184">184</a> 
+<a class="jxr_linenumber" name="L185" href="#L185">185</a>    <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L186" href="#L186">186</a> <em class="jxr_javadoccomment">    * {@inheritDoc}</em>
+<a class="jxr_linenumber" name="L187" href="#L187">187</a> <em class="jxr_javadoccomment">    * &lt;p&gt;Usage of this operator requires closing this stream after you are done with the iterator.  The preferred</em>
+<a class="jxr_linenumber" name="L188" href="#L188">188</a> <em class="jxr_javadoccomment">    * usage is to use a try with resource block on the stream.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L189" href="#L189">189</a> <em class="jxr_javadoccomment">    * &lt;p&gt;This method has special usage with the {@link org.infinispan.CacheStream.SegmentCompletionListener} in</em>
+<a class="jxr_linenumber" name="L190" href="#L190">190</a> <em class="jxr_javadoccomment">    * that as entries are retrieved from the next method it will complete segments.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L191" href="#L191">191</a> <em class="jxr_javadoccomment">    * &lt;p&gt;This method obeys the {@link CacheStream#distributedBatchSize(int)}.  Note that when using methods such as</em>
+<a class="jxr_linenumber" name="L192" href="#L192">192</a> <em class="jxr_javadoccomment">    * {@link CacheStream#flatMap(Function)} that you will have possibly more than 1 element mapped to a given key</em>
+<a class="jxr_linenumber" name="L193" href="#L193">193</a> <em class="jxr_javadoccomment">    * so this doesn't guarantee that many number of entries are returned per batch.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L194" href="#L194">194</a> <em class="jxr_javadoccomment">    * &lt;p&gt;Note that the {@link Iterator#remove()} method is only supported if no intermediate operations have been</em>
+<a class="jxr_linenumber" name="L195" href="#L195">195</a> <em class="jxr_javadoccomment">    * applied to the stream and this is not a stream created from a {@link Cache#values()} collection.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L196" href="#L196">196</a> <em class="jxr_javadoccomment">    * @return the element iterator for this stream</em>
+<a class="jxr_linenumber" name="L197" href="#L197">197</a> <em class="jxr_javadoccomment">    */</em>
+<a class="jxr_linenumber" name="L198" href="#L198">198</a>    @Override
+<a class="jxr_linenumber" name="L199" href="#L199">199</a>    Iterator&lt;R&gt; iterator();
+<a class="jxr_linenumber" name="L200" href="#L200">200</a> 
+<a class="jxr_linenumber" name="L201" href="#L201">201</a>    <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L202" href="#L202">202</a> <em class="jxr_javadoccomment">    * {@inheritDoc}</em>
+<a class="jxr_linenumber" name="L203" href="#L203">203</a> <em class="jxr_javadoccomment">    * &lt;p&gt;Usage of this operator requires closing this stream after you are done with the spliterator.  The preferred</em>
+<a class="jxr_linenumber" name="L204" href="#L204">204</a> <em class="jxr_javadoccomment">    * usage is to use a try with resource block on the stream.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L205" href="#L205">205</a> <em class="jxr_javadoccomment">    * @return the element spliterator for this stream</em>
+<a class="jxr_linenumber" name="L206" href="#L206">206</a> <em class="jxr_javadoccomment">    */</em>
+<a class="jxr_linenumber" name="L207" href="#L207">207</a>    @Override
+<a class="jxr_linenumber" name="L208" href="#L208">208</a>    Spliterator&lt;R&gt; spliterator();
+<a class="jxr_linenumber" name="L209" href="#L209">209</a> 
+<a class="jxr_linenumber" name="L210" href="#L210">210</a>    <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L211" href="#L211">211</a> <em class="jxr_javadoccomment">    * {@inheritDoc}</em>
+<a class="jxr_linenumber" name="L212" href="#L212">212</a> <em class="jxr_javadoccomment">    * &lt;p&gt;This operation is performed entirely on the local node irrespective of the backing cache.  This</em>
+<a class="jxr_linenumber" name="L213" href="#L213">213</a> <em class="jxr_javadoccomment">    * operation will act as an intermediate iterator operation requiring data be brought locally for proper behavior.</em>
+<a class="jxr_linenumber" name="L214" href="#L214">214</a> <em class="jxr_javadoccomment">    * Beware this means it will require having all entries of this cache into memory at one time.  This is described in</em>
+<a class="jxr_linenumber" name="L215" href="#L215">215</a> <em class="jxr_javadoccomment">    * more detail at {@link CacheStream}&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L216" href="#L216">216</a> <em class="jxr_javadoccomment">    * &lt;p&gt;Any subsequent intermediate operations and the terminal operation are also performed locally.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L217" href="#L217">217</a> <em class="jxr_javadoccomment">    * @return the new stream</em>
+<a class="jxr_linenumber" name="L218" href="#L218">218</a> <em class="jxr_javadoccomment">    */</em>
+<a class="jxr_linenumber" name="L219" href="#L219">219</a>    @Override
+<a class="jxr_linenumber" name="L220" href="#L220">220</a>    Stream&lt;R&gt; sorted();
+<a class="jxr_linenumber" name="L221" href="#L221">221</a> 
+<a class="jxr_linenumber" name="L222" href="#L222">222</a>    <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L223" href="#L223">223</a> <em class="jxr_javadoccomment">    * {@inheritDoc}</em>
+<a class="jxr_linenumber" name="L224" href="#L224">224</a> <em class="jxr_javadoccomment">    * &lt;p&gt;This operation is performed entirely on the local node irrespective of the backing cache.  This</em>
+<a class="jxr_linenumber" name="L225" href="#L225">225</a> <em class="jxr_javadoccomment">    * operation will act as an intermediate iterator operation requiring data be brought locally for proper behavior.</em>
+<a class="jxr_linenumber" name="L226" href="#L226">226</a> <em class="jxr_javadoccomment">    * Beware this means it will require having all entries of this cache into memory at one time.  This is described in</em>
+<a class="jxr_linenumber" name="L227" href="#L227">227</a> <em class="jxr_javadoccomment">    * more detail at {@link CacheStream}&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L228" href="#L228">228</a> <em class="jxr_javadoccomment">    * &lt;p&gt;Any subsequent intermediate operations and the terminal operation are then performed locally.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L229" href="#L229">229</a> <em class="jxr_javadoccomment">    * @param comparator the comparator to be used for sorting the elements</em>
+<a class="jxr_linenumber" name="L230" href="#L230">230</a> <em class="jxr_javadoccomment">    * @return the new stream</em>
+<a class="jxr_linenumber" name="L231" href="#L231">231</a> <em class="jxr_javadoccomment">    */</em>
+<a class="jxr_linenumber" name="L232" href="#L232">232</a>    @Override
+<a class="jxr_linenumber" name="L233" href="#L233">233</a>    Stream&lt;R&gt; sorted(Comparator&lt;? <strong class="jxr_keyword">super</strong> R&gt; comparator);
+<a class="jxr_linenumber" name="L234" href="#L234">234</a> 
+<a class="jxr_linenumber" name="L235" href="#L235">235</a>    <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L236" href="#L236">236</a> <em class="jxr_javadoccomment">    * {@inheritDoc}</em>
+<a class="jxr_linenumber" name="L237" href="#L237">237</a> <em class="jxr_javadoccomment">    * &lt;p&gt;This intermediate operation will be performed both remotely and locally to reduce how many elements</em>
+<a class="jxr_linenumber" name="L238" href="#L238">238</a> <em class="jxr_javadoccomment">    * are sent back from each node.  More specifically this operation is applied remotely on each node to only return</em>
+<a class="jxr_linenumber" name="L239" href="#L239">239</a> <em class="jxr_javadoccomment">    * up to the &lt;b&gt;maxSize&lt;/b&gt; value and then the aggregated results are limited once again on the local node.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L240" href="#L240">240</a> <em class="jxr_javadoccomment">    * &lt;p&gt;This operation will act as an intermediate iterator operation requiring data be brought locally for proper</em>
+<a class="jxr_linenumber" name="L241" href="#L241">241</a> <em class="jxr_javadoccomment">    * behavior.  This is described in more detail in the {@link CacheStream} documentation&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L242" href="#L242">242</a> <em class="jxr_javadoccomment">    * &lt;p&gt;Any subsequent intermediate operations and the terminal operation are then performed locally.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L243" href="#L243">243</a> <em class="jxr_javadoccomment">    * @param maxSize how many elements to limit this stream to.</em>
+<a class="jxr_linenumber" name="L244" href="#L244">244</a> <em class="jxr_javadoccomment">    * @return the new stream</em>
+<a class="jxr_linenumber" name="L245" href="#L245">245</a> <em class="jxr_javadoccomment">    */</em>
+<a class="jxr_linenumber" name="L246" href="#L246">246</a>    @Override
+<a class="jxr_linenumber" name="L247" href="#L247">247</a>    Stream&lt;R&gt; limit(<strong class="jxr_keyword">long</strong> maxSize);
+<a class="jxr_linenumber" name="L248" href="#L248">248</a> 
+<a class="jxr_linenumber" name="L249" href="#L249">249</a>    <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L250" href="#L250">250</a> <em class="jxr_javadoccomment">    * {@inheritDoc}</em>
+<a class="jxr_linenumber" name="L251" href="#L251">251</a> <em class="jxr_javadoccomment">    * &lt;p&gt;This operation is performed entirely on the local node irrespective of the backing cache.  This</em>
+<a class="jxr_linenumber" name="L252" href="#L252">252</a> <em class="jxr_javadoccomment">    * operation will act as an intermediate iterator operation requiring data be brought locally for proper behavior.</em>
+<a class="jxr_linenumber" name="L253" href="#L253">253</a> <em class="jxr_javadoccomment">    * This is described in more detail in the {@link CacheStream} documentation&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L254" href="#L254">254</a> <em class="jxr_javadoccomment">    * &lt;p&gt;Depending on the terminal operator this may or may not require all entries or a subset after skip is applied</em>
+<a class="jxr_linenumber" name="L255" href="#L255">255</a> <em class="jxr_javadoccomment">    * to be in memory all at once.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L256" href="#L256">256</a> <em class="jxr_javadoccomment">    * &lt;p&gt;Any subsequent intermediate operations and the terminal operation are then performed locally.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L257" href="#L257">257</a> <em class="jxr_javadoccomment">    * @param n how many elements to skip from this stream</em>
+<a class="jxr_linenumber" name="L258" href="#L258">258</a> <em class="jxr_javadoccomment">    * @return the new stream</em>
+<a class="jxr_linenumber" name="L259" href="#L259">259</a> <em class="jxr_javadoccomment">    */</em>
+<a class="jxr_linenumber" name="L260" href="#L260">260</a>    @Override
+<a class="jxr_linenumber" name="L261" href="#L261">261</a>    Stream&lt;R&gt; skip(<strong class="jxr_keyword">long</strong> n);
+<a class="jxr_linenumber" name="L262" href="#L262">262</a> 
+<a class="jxr_linenumber" name="L263" href="#L263">263</a>    <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L264" href="#L264">264</a> <em class="jxr_javadoccomment">    * {@inheritDoc}</em>
+<a class="jxr_linenumber" name="L265" href="#L265">265</a> <em class="jxr_javadoccomment">    * &lt;p&gt;This operation will be invoked both remotely and locally when used with a distributed cache backing this stream.</em>
+<a class="jxr_linenumber" name="L266" href="#L266">266</a> <em class="jxr_javadoccomment">    * This operation will act as an intermediate iterator operation requiring data be brought locally for proper</em>
+<a class="jxr_linenumber" name="L267" href="#L267">267</a> <em class="jxr_javadoccomment">    * behavior.  This is described in more detail in the {@link CacheStream} documentation&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L268" href="#L268">268</a> <em class="jxr_javadoccomment">    * &lt;p&gt;This intermediate iterator operation will be performed locally and remotely requiring possibly a subset of</em>
+<a class="jxr_linenumber" name="L269" href="#L269">269</a> <em class="jxr_javadoccomment">    * all elements to be in memory&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L270" href="#L270">270</a> <em class="jxr_javadoccomment">    * &lt;p&gt;Any subsequent intermediate operations and the terminal operation are then performed locally.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L271" href="#L271">271</a> <em class="jxr_javadoccomment">    * @return the new stream</em>
+<a class="jxr_linenumber" name="L272" href="#L272">272</a> <em class="jxr_javadoccomment">    */</em>
+<a class="jxr_linenumber" name="L273" href="#L273">273</a>    @Override
+<a class="jxr_linenumber" name="L274" href="#L274">274</a>    Stream&lt;R&gt; distinct();
+<a class="jxr_linenumber" name="L275" href="#L275">275</a> 
+<a class="jxr_linenumber" name="L276" href="#L276">276</a>    <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L277" href="#L277">277</a> <em class="jxr_javadoccomment">    * {@inheritDoc}</em>
+<a class="jxr_linenumber" name="L278" href="#L278">278</a> <em class="jxr_javadoccomment">    * &lt;p&gt;Note when using a distributed backing cache for this stream the collector must be marshallable.  This</em>
+<a class="jxr_linenumber" name="L279" href="#L279">279</a> <em class="jxr_javadoccomment">    * prevents the usage of {@link java.util.stream.Collectors} class.  However you can use the</em>
+<a class="jxr_linenumber" name="L280" href="#L280">280</a> <em class="jxr_javadoccomment">    * {@link org.infinispan.stream.CacheCollectors} static factory methods to create a serializable wrapper, which then</em>
+<a class="jxr_linenumber" name="L281" href="#L281">281</a> <em class="jxr_javadoccomment">    * creates the actual collector lazily after being deserialized.  This is useful to use any method from the</em>
+<a class="jxr_linenumber" name="L282" href="#L282">282</a> <em class="jxr_javadoccomment">    * {@link java.util.stream.Collectors} class as you would normally.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L283" href="#L283">283</a> <em class="jxr_javadoccomment">    * @param collector</em>
+<a class="jxr_linenumber" name="L284" href="#L284">284</a> <em class="jxr_javadoccomment">    * @param &lt;R1&gt; collected type</em>
+<a class="jxr_linenumber" name="L285" href="#L285">285</a> <em class="jxr_javadoccomment">    * @param &lt;A&gt; intermediate collected type if applicable</em>
+<a class="jxr_linenumber" name="L286" href="#L286">286</a> <em class="jxr_javadoccomment">    * @return the collected value</em>
+<a class="jxr_linenumber" name="L287" href="#L287">287</a> <em class="jxr_javadoccomment">    * @see org.infinispan.stream.CacheCollectors</em>
+<a class="jxr_linenumber" name="L288" href="#L288">288</a> <em class="jxr_javadoccomment">    */</em>
+<a class="jxr_linenumber" name="L289" href="#L289">289</a>    @Override
+<a class="jxr_linenumber" name="L290" href="#L290">290</a>    &lt;R1, A&gt; R1 collect(Collector&lt;? <strong class="jxr_keyword">super</strong> R, A, R1&gt; collector);
+<a class="jxr_linenumber" name="L291" href="#L291">291</a> }
+</pre>
+<hr/>
+<div id="footer">Copyright &#169; 2015. All rights reserved.</div>
+</body>
+</html>
