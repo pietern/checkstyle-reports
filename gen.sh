@@ -10,7 +10,7 @@ cat <<EOS
 <ul>
 EOS
 
-for index in $(find . -wholename '*/site/index.html'); do
+for index in $(find . -wholename '*/site/checkstyle.html'); do
   echo "<li><a href="${index}">${index}</a></li>"
 done
 
