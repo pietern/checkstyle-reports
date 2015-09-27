@@ -1,0 +1,1345 @@
+   sample
+
+     ----------------------------------------------------------------------
+
+   Last Published: 2015-09-27  | Version: 0.0.1-SNAPSHOT
+   sample
+
+     ----------------------------------------------------------------------
+
+      Project Documentation
+
+     * Project Information
+     * Project Reports
+          * Checkstyle
+          * Source Xref
+   Built by Maven
+
+Checkstyle Results
+
+   The following document contains the results of Checkstyle 6.11-SNAPSHOT
+   with check_jOOL.xml ruleset. rss feed
+
+Summary
+
+   Files            Info            Warnings                Errors            
+   114             0               454                     0                  
+
+Rules
+
+   Category    Rule                                       Violations Severity 
+               Indentation                                                    
+                 * throwsIndent: "4"                      
+                 * arrayInitIndent: "4"                   
+   indentation   * caseIndent: "4"                        454         Warning
+                 * basicOffset: "4"                       
+                 * braceAdjustment: "0"                   
+                 * lineWrappingIndentation: "4"           
+
+Details
+
+  jOOL/src/main/java/org/jooq/lambda/tuple/Tuple.java
+
+   Severity Category    Rule        Message                              Line 
+    Warning indentation Indentation ',' have incorrect indentation level 174  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 201  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 202  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 233  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 234  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 235  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 270  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 271  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 272  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 273  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 312  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 313  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 314  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 315  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 316  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 359  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 360  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 361  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 362  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 363  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 364  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 411  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 412  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 413  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 414  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 415  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 416  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 417  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 468  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 469  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 470  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 471  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 472  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 473  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 474  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 475  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 530  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 531  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 532  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 533  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 534  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 535  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 536  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 537  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 538  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 597  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 598  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 599  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 600  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 601  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 602  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 603  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 604  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 605  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 606  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 669  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 670  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 671  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 672  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 673  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 674  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 675  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 676  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 677  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 678  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 679  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 746  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 747  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 748  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 749  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 750  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 751  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 752  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 753  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 754  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 755  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 756  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 757  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 828  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 829  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 830  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 831  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 832  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 833  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 834  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 835  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 836  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 837  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 838  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 839  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 840  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 915  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 916  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 917  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 918  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 919  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 920  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 921  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 922  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 923  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 924  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 925  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 926  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 927  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 928  
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 1007 
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 1008 
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 1009 
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 1010 
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 1011 
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 1012 
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 1013 
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 1014 
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 1015 
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 1016 
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 1017 
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 1018 
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 1019 
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 1020 
+                                    6, expected level should be 8.       
+    Warning indentation Indentation ',' have incorrect indentation level 1021 
+                                    6, expected level should be 8.       
+
+  jOOL/src/main/java/org/jooq/lambda/tuple/Tuple1.java
+
+   Severity Category    Rule        Message                              Line 
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   203
+                                    8.                                   
+
+  jOOL/src/main/java/org/jooq/lambda/tuple/Tuple10.java
+
+   Severity Category    Rule        Message                              Line 
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   267
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   268
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   269
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   270
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   271
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   272
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   273
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   274
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   275
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 49, expected level should be   276
+                                    8.                                   
+
+  jOOL/src/main/java/org/jooq/lambda/tuple/Tuple11.java
+
+   Severity Category    Rule        Message                              Line 
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   274
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   275
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   276
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   277
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   278
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   279
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   280
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   281
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   282
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 49, expected level should be   283
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 49, expected level should be   284
+                                    8.                                   
+
+  jOOL/src/main/java/org/jooq/lambda/tuple/Tuple12.java
+
+   Severity Category    Rule        Message                              Line 
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   281
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   282
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   283
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   284
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   285
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   286
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   287
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   288
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   289
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 49, expected level should be   290
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 49, expected level should be   291
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 49, expected level should be   292
+                                    8.                                   
+
+  jOOL/src/main/java/org/jooq/lambda/tuple/Tuple13.java
+
+   Severity Category    Rule        Message                              Line 
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   288
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   289
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   290
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   291
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   292
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   293
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   294
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   295
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   296
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 49, expected level should be   297
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 49, expected level should be   298
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 49, expected level should be   299
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 49, expected level should be   300
+                                    8.                                   
+
+  jOOL/src/main/java/org/jooq/lambda/tuple/Tuple14.java
+
+   Severity Category    Rule        Message                              Line 
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   295
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   296
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   297
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   298
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   299
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   300
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   301
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   302
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   303
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 49, expected level should be   304
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 49, expected level should be   305
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 49, expected level should be   306
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 49, expected level should be   307
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 49, expected level should be   308
+                                    8.                                   
+
+  jOOL/src/main/java/org/jooq/lambda/tuple/Tuple15.java
+
+   Severity Category    Rule        Message                              Line 
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   302
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   303
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   304
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   305
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   306
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   307
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   308
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   309
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   310
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 49, expected level should be   311
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 49, expected level should be   312
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 49, expected level should be   313
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 49, expected level should be   314
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 49, expected level should be   315
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 49, expected level should be   316
+                                    8.                                   
+
+  jOOL/src/main/java/org/jooq/lambda/tuple/Tuple16.java
+
+   Severity Category    Rule        Message                              Line 
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   302
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   303
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   304
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   305
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   306
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   307
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   308
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   309
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   310
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 49, expected level should be   311
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 49, expected level should be   312
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 49, expected level should be   313
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 49, expected level should be   314
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 49, expected level should be   315
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 49, expected level should be   316
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 49, expected level should be   317
+                                    8.                                   
+
+  jOOL/src/main/java/org/jooq/lambda/tuple/Tuple2.java
+
+   Severity Category    Rule        Message                              Line 
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   256
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   257
+                                    8.                                   
+
+  jOOL/src/main/java/org/jooq/lambda/tuple/Tuple3.java
+
+   Severity Category    Rule        Message                              Line 
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   218
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   219
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   220
+                                    8.                                   
+
+  jOOL/src/main/java/org/jooq/lambda/tuple/Tuple4.java
+
+   Severity Category    Rule        Message                              Line 
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   225
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   226
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   227
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   228
+                                    8.                                   
+
+  jOOL/src/main/java/org/jooq/lambda/tuple/Tuple5.java
+
+   Severity Category    Rule        Message                              Line 
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   232
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   233
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   234
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   235
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   236
+                                    8.                                   
+
+  jOOL/src/main/java/org/jooq/lambda/tuple/Tuple6.java
+
+   Severity Category    Rule        Message                              Line 
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   239
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   240
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   241
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   242
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   243
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   244
+                                    8.                                   
+
+  jOOL/src/main/java/org/jooq/lambda/tuple/Tuple7.java
+
+   Severity Category    Rule        Message                              Line 
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   246
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   247
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   248
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   249
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   250
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   251
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   252
+                                    8.                                   
+
+  jOOL/src/main/java/org/jooq/lambda/tuple/Tuple8.java
+
+   Severity Category    Rule        Message                              Line 
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   253
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   254
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   255
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   256
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   257
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   258
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   259
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   260
+                                    8.                                   
+
+  jOOL/src/main/java/org/jooq/lambda/tuple/Tuple9.java
+
+   Severity Category    Rule        Message                              Line 
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   260
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   261
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   262
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   263
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   264
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   265
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   266
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   267
+                                    8.                                   
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 47, expected level should be   268
+                                    8.                                   
+
+  jOOL/src/test/java/org/jooq/lambda/SQLTest.java
+
+   Severity Category    Rule        Message                              Line 
+                                    'SQL' have incorrect indentation          
+    Warning indentation Indentation level 12, expected level should be   82
+                                    16.                                  
+    Warning indentation Indentation '.' have incorrect indentation level 83   
+                                    15, expected level should be 16.     
+                                    'SQL' have incorrect indentation          
+    Warning indentation Indentation level 12, expected level should be   95
+                                    16.                                  
+    Warning indentation Indentation '.' have incorrect indentation level 96   
+                                    15, expected level should be 16.     
+                                    'SQL' have incorrect indentation          
+    Warning indentation Indentation level 12, expected level should be   109
+                                    16.                                  
+    Warning indentation Indentation '.' have incorrect indentation level 110  
+                                    15, expected level should be 16.     
+
+  jOOL/src/test/java/org/jooq/lambda/SeqTest.java
+
+   Severity Category    Rule        Message                              Line 
+                                    'Seq' have incorrect indentation          
+    Warning indentation Indentation level 8, expected level should be    76
+                                    12.                                  
+    Warning indentation Indentation '.' have incorrect indentation level 77   
+                                    11, expected level should be 12.     
+    Warning indentation Indentation '.' have incorrect indentation level 78   
+                                    11, expected level should be 12.     
+                                    'Seq' have incorrect indentation          
+    Warning indentation Indentation level 8, expected level should be    113
+                                    12.                                  
+    Warning indentation Indentation '.' have incorrect indentation level 114  
+                                    11, expected level should be 12.     
+    Warning indentation Indentation '.' have incorrect indentation level 115  
+                                    11, expected level should be 12.     
+                                    'Seq' have incorrect indentation          
+    Warning indentation Indentation level 8, expected level should be    147
+                                    12.                                  
+    Warning indentation Indentation '.' have incorrect indentation level 148  
+                                    11, expected level should be 12.     
+    Warning indentation Indentation '.' have incorrect indentation level 149  
+                                    11, expected level should be 12.     
+                                    'Seq' have incorrect indentation          
+    Warning indentation Indentation level 8, expected level should be    160
+                                    12.                                  
+    Warning indentation Indentation '.' have incorrect indentation level 161  
+                                    11, expected level should be 12.     
+    Warning indentation Indentation '.' have incorrect indentation level 162  
+                                    11, expected level should be 12.     
+                                    'Seq' have incorrect indentation          
+    Warning indentation Indentation level 8, expected level should be    173
+                                    12.                                  
+    Warning indentation Indentation '.' have incorrect indentation level 174  
+                                    11, expected level should be 12.     
+    Warning indentation Indentation '.' have incorrect indentation level 175  
+                                    11, expected level should be 12.     
+                                    'Seq' have incorrect indentation          
+    Warning indentation Indentation level 8, expected level should be    184
+                                    12.                                  
+    Warning indentation Indentation '.' have incorrect indentation level 185  
+                                    11, expected level should be 12.     
+    Warning indentation Indentation '.' have incorrect indentation level 186  
+                                    11, expected level should be 12.     
+                                    'member def type' have incorrect          
+    Warning indentation Indentation indentation level 7, expected level  257
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  257
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  259
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  259
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  260
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  260
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  261
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  261
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  262
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  262
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  263
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  263
+                                    should be 8.                         
+                                    'member def type' have incorrect          
+    Warning indentation Indentation indentation level 7, expected level  266
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  266
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  268
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  268
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  269
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  269
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  270
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  270
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  271
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  271
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  272
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  272
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  273
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  273
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  274
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  274
+                                    should be 8.                         
+                                    'member def type' have incorrect          
+    Warning indentation Indentation indentation level 7, expected level  277
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  277
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  284
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  284
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  285
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  285
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  286
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  286
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  287
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  287
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  288
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  288
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  289
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  289
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  290
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  290
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  291
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  291
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  292
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  292
+                                    should be 8.                         
+                                    'member def type' have incorrect          
+    Warning indentation Indentation indentation level 7, expected level  295
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  295
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  303
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  303
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  304
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  304
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  305
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  305
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  306
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  306
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  307
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  307
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  308
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  308
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  309
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  309
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  310
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  310
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  311
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  311
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  312
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  312
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  313
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  313
+                                    should be 8.                         
+                                    'member def type' have incorrect          
+    Warning indentation Indentation indentation level 7, expected level  316
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  316
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  325
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  325
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  326
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  326
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  327
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  327
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  328
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  328
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  329
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  329
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  330
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  330
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  331
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  331
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  332
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  332
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  333
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  333
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  334
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  334
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  335
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  335
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  336
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  336
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  337
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  337
+                                    should be 8.                         
+                                    'member def type' have incorrect          
+    Warning indentation Indentation indentation level 7, expected level  340
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  340
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  350
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  350
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  351
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  351
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  352
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  352
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  353
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  353
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  354
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  354
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  355
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  355
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  356
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  356
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  357
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  357
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  358
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  358
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  359
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  359
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  360
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  360
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  361
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  361
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  362
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  362
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  363
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  363
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  364
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  364
+                                    should be 8.                         
+                                    'member def type' have incorrect          
+    Warning indentation Indentation indentation level 7, expected level  367
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  367
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  378
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  378
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  379
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  379
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  380
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  380
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  381
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  381
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  382
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  382
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  383
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  383
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  384
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  384
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  385
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  385
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  386
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  386
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  387
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  387
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  388
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  388
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  389
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  389
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  390
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  390
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  391
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  391
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  392
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  392
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  393
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  393
+                                    should be 8.                         
+                                    'method call' child have incorrect        
+    Warning indentation Indentation indentation level 7, expected level  394
+                                    should be 8.                         
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  394
+                                    should be 8.                         
+                                    'Seq' have incorrect indentation          
+    Warning indentation Indentation level 8, expected level should be    1115
+                                    12.                                  
+    Warning indentation Indentation '.' have incorrect indentation level 1116 
+                                    11, expected level should be 12.     
+                                    'Seq' have incorrect indentation          
+    Warning indentation Indentation level 8, expected level should be    1121
+                                    12.                                  
+    Warning indentation Indentation '.' have incorrect indentation level 1122 
+                                    11, expected level should be 12.     
+                                    'Seq' have incorrect indentation          
+    Warning indentation Indentation level 8, expected level should be    1127
+                                    12.                                  
+    Warning indentation Indentation '.' have incorrect indentation level 1128 
+                                    11, expected level should be 12.     
+
+     ----------------------------------------------------------------------
+
+   Copyright (c) 2015. All Rights Reserved.
+
+     ----------------------------------------------------------------------

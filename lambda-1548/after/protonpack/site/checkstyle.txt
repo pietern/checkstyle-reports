@@ -1,0 +1,150 @@
+   sample
+
+     ----------------------------------------------------------------------
+
+   Last Published: 2015-09-27  | Version: 0.0.1-SNAPSHOT
+   sample
+
+     ----------------------------------------------------------------------
+
+      Project Documentation
+
+     * Project Information
+     * Project Reports
+          * Checkstyle
+          * Source Xref
+   Built by Maven
+
+Checkstyle Results
+
+   The following document contains the results of Checkstyle 6.11-SNAPSHOT
+   with check_protonpack.xml ruleset. rss feed
+
+Summary
+
+   Files            Info            Warnings                Errors            
+   41              0               23                      0                  
+
+Rules
+
+   Category    Rule                                       Violations Severity 
+               Indentation                                                    
+                 * throwsIndent: "8"                      
+                 * arrayInitIndent: "4"                   
+   indentation   * caseIndent: "4"                        23          Warning
+                 * basicOffset: "4"                       
+                 * braceAdjustment: "0"                   
+                 * lineWrappingIndentation: "8"           
+
+Details
+
+  protonpack/src/main/java/com/codepoetics/protonpack/AggregatingSpliterator.java
+
+   Severity Category    Rule        Message                              Line 
+                                    'if' have incorrect indentation           
+    Warning indentation Indentation level 16, expected level should be   25
+                                    one of the following: 12, 20.        
+                                    'if' child have incorrect                 
+    Warning indentation Indentation indentation level 20, expected level 26
+                                    should be one of the following: 16,  
+                                    24.                                  
+                                    'if' child have incorrect                 
+    Warning indentation Indentation indentation level 20, expected level 27
+                                    should be one of the following: 16,  
+                                    24.                                  
+                                    'if rcurly' have incorrect                
+    Warning indentation Indentation indentation level 16, expected level 28
+                                    should be one of the following: 12,  
+                                    20.                                  
+                                    'block' child have incorrect              
+    Warning indentation Indentation indentation level 16, expected level 29
+                                    should be one of the following: 12,  
+                                    20.                                  
+                                    'block rcurly' have incorrect             
+    Warning indentation Indentation indentation level 12, expected level 30
+                                    should be one of the following: 8,   
+                                    16.                                  
+
+  protonpack/src/main/java/com/codepoetics/protonpack/TriZippingSpliterator.java
+
+   Severity Category    Rule        Message                              Line 
+                                    'middles' have incorrect indentation      
+    Warning indentation Indentation level 12, expected level should be   33
+                                    16.                                  
+
+  protonpack/src/main/java/com/codepoetics/protonpack/ZippingSpliterator.java
+
+   Severity Category    Rule        Message                              Line 
+                                    'rights' have incorrect indentation       
+    Warning indentation Indentation level 12, expected level should be   28
+                                    16.                                  
+
+  protonpack/src/main/java/com/codepoetics/protonpack/collectors/CollectorUtils.java
+
+   Severity Category    Rule        Message                              Line 
+                                    'maxBy' have incorrect indentation        
+    Warning indentation Indentation level 4, expected level should be    39
+                                    12.                                  
+                                    'minBy' have incorrect indentation        
+    Warning indentation Indentation level 4, expected level should be    69
+                                    12.                                  
+
+  protonpack/src/test/java/com/codepoetics/protonpack/GroupRunsTest.java
+
+   Severity Category    Rule        Message                              Line 
+                                    'group_runs' have incorrect               
+    Warning indentation Indentation indentation level 4, expected level  18
+                                    should be 12.                        
+                                    'group_runs_end_has_run' have             
+    Warning indentation Indentation incorrect indentation level 4,       33
+                                    expected level should be 12.         
+                                    'group_is_empty' have incorrect           
+    Warning indentation Indentation indentation level 4, expected level  48
+                                    should be 12.                        
+
+  protonpack/src/test/java/com/codepoetics/protonpack/MapStreamTest.java
+
+   Severity Category    Rule        Message                              Line 
+                                    'method def' child have incorrect         
+    Warning indentation Indentation indentation level 7, expected level  50
+                                    should be 8.                         
+
+  protonpack/src/test/java/com/codepoetics/protonpack/MinMaxByProjectionTest.java
+
+Severity Category    Rule        Message                                       Line 
+                                 'max_by_with_projection_and_default_comparer'      
+ Warning indentation Indentation have incorrect indentation level 4, expected  16
+                                 level should be 12.                           
+                                 'min_by_with_projection_and_default_comparer'      
+ Warning indentation Indentation have incorrect indentation level 4, expected  26
+                                 level should be 12.                           
+
+  protonpack/src/test/java/com/codepoetics/protonpack/OptionalTest.java
+
+   Severity Category    Rule        Message                              Line 
+                                    'stream_of_nonempty_optionals' have       
+    Warning indentation Indentation incorrect indentation level 4,       17
+                                    expected level should be 12.         
+                                    'stream_of_empty_optionals' have          
+    Warning indentation Indentation incorrect indentation level 4,       26
+                                    expected level should be 12.         
+
+  protonpack/src/test/java/com/codepoetics/protonpack/WindowedTest.java
+
+Severity Category    Rule        Message                                                                   Line 
+ Warning indentation Indentation 'windowing_on_list' have incorrect indentation level 4, expected level    19   
+                                 should be 12.                                                             
+ Warning indentation Indentation 'windowing_on_list_two_overlap' have incorrect indentation level 4,       33   
+                                 expected level should be 12.                                              
+ Warning indentation Indentation 'windowing_on__empty_list' have incorrect indentation level 4, expected   45   
+                                 level should be 12.                                                       
+ Warning indentation Indentation 'windowing_on_list_two_overlap_allow_lesser_size' have incorrect          57   
+                                 indentation level 4, expected level should be 12.                         
+ Warning indentation Indentation 'windowing_on_list_one_overlap_allow_lesser_size_multiple_lesser_windows' 70   
+                                 have incorrect indentation level 4, expected level should be 12.          
+
+     ----------------------------------------------------------------------
+
+   Copyright (c) 2015. All Rights Reserved.
+
+     ----------------------------------------------------------------------
