@@ -27,7 +27,7 @@ under the License.
     <item>
       <title>File: 5371,
              Errors: 0,
-             Warnings: 31637,
+             Warnings: 31617,
              Infos: 0
       </title>
             <link>${project.url}/checkstyle.html</link>
@@ -34212,7 +34212,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  7
+                  5
                 </td>
                 <td>
                   0
@@ -46994,7 +46994,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  13
+                  11
                 </td>
                 <td>
                   0
@@ -58656,7 +58656,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  45
+                  33
                 </td>
                 <td>
                   0
@@ -72404,7 +72404,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  8
+                  4
                 </td>
                 <td>
                   0
